@@ -1,0 +1,44 @@
+//-Message to show if the collection is referenced from somewhere else
+//-Includes a link to the referenced collection
+.container(ng-if='item.collectionRef')
+	.card-panel.center
+		h5 This is an referenced collection
+		.btn.orange(ui-sref='editor.organization.collections.collection({organizationId: organizationId, collectionTypeId: item.collectionRefTypeId, collectionId: item.collectionRef})') go
+
+//-Different content states
+md-tabs(md-dynamic-height ng-if='!item.collectionRef')
+	//.btn.grey(ng-click='chooseTemplate()' style='margin-right:10px') {{item.template}}
+
+	//-One tab for each content state
+	md-tab(ng-repeat='(key, state) in getStates(collectionTypeId, item.template) track by key' label='{{state.name}}' ng-click='setState(key)')
+		md-content: .pad
+
+			//-If the device option is set, wrap the item in a device preview
+			div(ng-if='state.device' style='height: 520px; width: 100%; border: 2px dashed rgba(0,0,0,0.1); overflow: hidden')
+				device-preview(device='{width: 1000, height: 700}' stylesheets="['./css/viewer.css', 'https://fonts.googleapis.com/icon?family=Material+Icons']")
+					collection-item(item='item' state='key' collection-type-id='collectionTypeId')
+
+			//-Otherwise, don't
+			div(ng-if='!state.device')
+				collection-item(item='item' state='key' collection-type-id='collectionTypeId')
+
+	//-A default form with all properties was used previously
+	//-May decide to return to this
+	//md-tab(label='form' ng-click='setState("form")')
+		md-content: .pad
+			.container: .card-panel
+				//-input(ng-model='state')
+				label Content
+				input(ng-model='item.props.content')
+				//-p {{_item.props.content}}
+
+	//-Fixed tab which allows to switch between templates
+	md-tab(label='template')
+		md-content: .pad
+			//-.container: input(type='search' placeholder='search' ng-model='searchTemplates')
+			.row(style='overflow: auto; height: 100%; padding-bottom: 80px')
+				.col.s12.l4(ng-repeat='(key, template) in getTemplates(collectionTypeId) track by key')
+					.selectable(ng-class='{active: item.template == key}')
+						.card.item-full.pointer(ng-click='item.template = key')
+							.card-img: img.responsive-img(src='{{template.preview}}')
+							.card-content: strong {{template.name | underscoreless | camelcase}}

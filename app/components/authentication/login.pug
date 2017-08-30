@@ -1,0 +1,39 @@
+.orange(style='min-height: 100%; width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: center')
+	.container: .card-panel(style='border-radius: 15px')
+		.row
+			.col.s12.l6.hide-on-med-and-down
+
+				img.responsive-img(src='img/hamster.png')
+
+			.col.s12.l6
+				
+				form(ng-submit='$ctrl.submit()')
+					//-Header
+					h4(ng-show='$ctrl.isSignUp') Sign Up
+					h4(ng-show='!$ctrl.isSignUp') Login
+
+					//-Fields
+					div(ng-show='$ctrl.isSignUp')
+						label Name
+						input(type='text' ng-model='$ctrl.name')
+
+					label Email
+					input(type='text' ng-model='$ctrl.email')
+
+					label Password
+					input(type='password' ng-model='$ctrl.password')
+
+					div(ng-show='$ctrl.isSignUp')
+						label Confirm Password
+						input(type='password' ng-model='$ctrl.confirm')
+
+					//-Button
+					input.btn.blue.no-animate(type='submit' ng-show='$ctrl.isSignUp' value='Sign Up')
+					input.btn.blue.no-animate(type='submit' ng-show='!$ctrl.isSignUp' value='Login')
+
+					//-Help text
+					p.right.no-animate(ng-show='$ctrl.isSignUp') Already have an account? 
+						a(ng-click='$ctrl.toggleSignUp()') Login
+
+					p.right.no-animate(ng-show='!$ctrl.isSignUp') Need an account? 
+						a(ng-click='$ctrl.toggleSignUp()') Sign Up

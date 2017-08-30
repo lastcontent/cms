@@ -1,0 +1,34 @@
+//-Side nav
+.side-nav.fixed.grey.darken-3.white-text
+	.logo.center: img.pointer(ui-sref='editor.home' src='{{config.logos.small}}' style='width: 75px')
+
+	//-Organizations
+	ul.blue.lighten-2(ng-repeat='organization in organizations')
+		li: a(ui-sref-active-eq='active' ui-sref='editor.organization({organizationId: organization.$id})' style='font-size:18px;') {{organization.name}}
+
+		li(ng-repeat='(key, collectionType) in getCollectionTypes()')
+			a(
+				ui-sref-active='active'
+				ui-sref='editor.organization.collections({collectionTypeId: key, organizationId: organization.$id})'
+			) {{collectionType.name}}
+				i.material-icons.left {{collectionType.icon}}
+				
+	//-Other menu items
+	ul
+		li: a.white-text(ui-sref-active='active' ui-sref='editor.profile') Profile
+			i.material-icons.left.white-text face
+
+//-Everything to the right of the sidenav
+main
+
+	//-Header
+	.navbar-fixed: nav.grey.darken-3.white-text
+
+		//-Menu button for smaller screens
+		a.button-collapse: i.material-icons menu
+
+		//-Breadcrumb
+		div(style='margin-left: 30px'): div(ncy-breadcrumb)
+
+	//-View to be replaced with child views
+	div(ui-view='main')

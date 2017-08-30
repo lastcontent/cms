@@ -1,0 +1,6 @@
+//-div(ng-repeat='step in steps' ng-class='{active: $last}' ng-switch="$last || !!step.abstract")
+	a.breadcrumb(ng-switch-when='false' href='{{step.ncyBreadcrumbLink}}') {{step.ncyBreadcrumbLabel}}
+	span(ng-switch-when='true') {{step.ncyBreadcrumbLabel}}
+
+
+a.breadcrumb(ng-repeat='step in steps' href='{{step.ncyBreadcrumbLink}}') {{step.ncyBreadcrumbLabel}}

@@ -1,0 +1,23 @@
+div(style='overflow: auto; height: 100%; padding-bottom: 80px'): .container
+	.card-panel
+		h4 {{item.props.content}}
+	.card-panel(ng-repeat='option in item.props.options track by $index'): .row
+		.col.s12.l6
+			h5 {{option.text}}
+		.col.s12.l6
+			//md-slider-container
+				md-slider(flex min='0' max='5' ng-model='option.weight')
+				input(flex type='number' ng-model='option.weight')
+			rzslider(rz-slider-model='option.weight' rz-slider-options='{floor:1, ceil:5, showTicksValues:true}')
+		.col.s12
+			br(ng-show='!option.suggestions')
+			ul.collection(ng-show='option.suggestions')
+				li.collection-item.avatar(ng-repeat='suggestion in option.suggestions track by $index' style='padding-left: 20px; padding-right: 60px')
+					p {{suggestion.text}}
+					.secondary-content
+						i.pointer.material-icons.blue-text(ng-click='option.suggestions.splice($index,1)') close
+			.row
+				.col.s8
+					input(type='text' ng-model='newSuggestion' placeholder='New Suggestion')
+				.col.s4
+					.btn.orange.full(ng-click='option.suggestions ? option.suggestions.push({text: newSuggestion}) : option.suggestions = [{text: newSuggestion}]; newSuggestion=""') add

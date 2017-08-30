@@ -1,0 +1,39 @@
+.content
+	.zzzzzzzzcontainer
+		.row
+			.col.s12.l6
+				.card-panel
+					section.center
+						img.responsive-img(src='/img/placeholder2x1.svg')
+					//br
+					section
+						br
+						.row
+							a.col.s12.l4.btn.grey Upload Image
+							a.col.s12.l4.offset-l4.btn.grey Remove Image
+					br
+					section
+						label Name
+						input(type='text' ng-model='collection.name')
+					section
+						label Tags
+						input(type='text')
+					section
+						a.btn-flat(ng-init='advanced=false' ng-click='advanced = !advanced') advanced
+							i.material-icons.right expand_more
+					section(ng-show='advanced')
+						br
+						.btn.red(ng-click='removeCollection()') Delete
+						p This action cannot be undone
+
+			.col.s12.l6
+				.card-panel
+					section
+						label URL
+						input(type='text')
+					section
+						label Expression
+						textarea
+					section(style='text-align:right')
+						br
+						.btn.red Delete

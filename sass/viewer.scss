@@ -1,0 +1,84 @@
+//@import "index";
+@import 'materialize';
+@import 'likert';
+
+body {
+ 	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	font-family: "Raleway", sans-serif;
+	
+	overflow: hidden;
+}
+
+header, footer{
+	display: flex;
+  	height: 100px;
+ //  background-color: #00bcd4;
+}
+
+main {
+	// display: flex;
+	// flex: 1 0;
+	// align-content: center;
+	// align-items: center;
+
+	background: #fbfbfb;
+}
+
+.radioset{
+	margin-top:60px;
+}
+
+.content-wrapper{
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+alpaca-slides{
+  width: 100%;
+}
+
+alpaca-slide {
+	height: 100%;
+	//display: flex;
+	//flex-direction: column;
+	//align-content: center;
+
+	.card{
+		height: 300px;
+		overflow: hidden;
+	}
+}
+
+.collection-item-template{
+	height: 100%;
+}
+
+.pointer{
+	cursor: pointer;
+}
+
+.text{
+	font-size: 1.2em;
+}
+.text.large{
+	font-size: 2.9em;
+/* 	.editable{
+		min-height: 3.2em;
+	} */
+}
+[contenteditable='true'], .editable{
+	border: 3px solid transparent;
+}
+[contenteditable='true']:hover, .editable:hover{
+	border: 3px dashed #ccc;
+}
+[contenteditable='true']:empty:before, .editable:empty:before{
+	content: attr(placeholder);
+	min-height: 30px;
+	display: block; /* For Firefox */
+	color: #ccc;
+}

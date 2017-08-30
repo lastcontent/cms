@@ -1,0 +1,11 @@
+.radioset: ul
+	li(ng-repeat='option in item.props.options')
+		input(
+			type='radio'
+			name='radio-{{item.$id}}[]'
+			id='radio-{{item.$id}}-{{$index}}'
+		)
+		label(
+			for='radio-{{item.$id}}-{{$index}}'
+		)
+.text-labels: .text-label(ng-repeat='option in item.props.options') {{option.text}}

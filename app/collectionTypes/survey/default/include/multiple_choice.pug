@@ -1,0 +1,12 @@
+.radioset.nobar: ul
+	li(ng-repeat='option in item.props.options')
+		input(
+			type='radio'
+			name='radio-{{item.$id}}[]'
+			id='radio-{{item.$id}}-{{$index}}'
+		)
+		label(
+			for='radio-{{item.$id}}-{{$index}}'
+			ng-class='{wrong: option.correct == false, correct: option.correct}'
+		)
+.text-labels: .text-label(ng-repeat='option in item.props.options') {{option.text}}

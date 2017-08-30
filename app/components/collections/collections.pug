@@ -1,0 +1,36 @@
+.content
+	
+	.row: .col.s12: nav.transparent: .nav-wrapper
+		ul.left
+			li.hide-on-small-only(ng-if='editing')
+				.btn.orange(ng-click='addCollection()' style='margin-right: 15px') New
+			li
+				input(type='search' ng-model='search' placeholder='Search' style='width:250px; margin-right: 15px; margin-top: 12px')
+			
+		ul.right.hide-on-small-only
+			//-li: a.dropdown-button.grey-text(href="#!" data-activates="dropdown1") Dropdown
+				i.material-icons.right arrow_drop_down
+			li
+				md-select(ng-model="weapon" placeholder="Sort By" class="black-text md-no-underline" md-container-class='nav-md-select')
+					md-option(value="name") Name
+					md-option(value="date") Date
+			li.no-animate(ng-if='!isGrid'): a(ng-click='toggleGrid()'): i.material-icons.small.grey-text view_module
+			li.no-animate(ng-if='isGrid'): a(ng-click='toggleGrid()'): i.material-icons.small.grey-text view_list
+
+	.row(ng-if='!isGrid')
+		.col.s12
+			.card-panel.pointer.full.no-animate(ng-repeat='collection in filtered = (collections | filter: {name: search})' ng-click='selectCollection(collection)')
+				h5 {{collection.name}}
+		.col.s12
+			.center.no-animate(ng-hide='filtered.length' style='padding: 150px 0px')
+				p.flow-text No Results!
+
+
+	.row(ng-if='isGrid')
+		.col.s12.m6.l4.xl3(ng-repeat='collection in filtered = (collections | filter: {name: search})')
+			div(ng-click='selectCollection(collection)')
+				collection-preview(collection='collection')
+						
+		.col.s12
+			.center.no-animate(ng-hide='filtered.length' style='padding: 150px 0px')
+				p.flow-text No Results!

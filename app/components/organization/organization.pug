@@ -1,0 +1,46 @@
+.content
+	.row
+		.col.s12.l6
+			.card-panel
+
+				section.center
+					div(style='max-width: 250px; margin: 0 auto')
+						img.responsive-img(src='https://wellopp.com/img/logo.svg')
+				//br
+				section
+					br
+					.row
+						a.col.s12.l4.btn.grey Upload Image
+						a.col.s12.l4.offset-l4.btn.grey Remove Image
+				br
+				section
+					label Name
+					input(type='text' ng-model='organization.name')
+				section
+					label Email
+					input(type='text' ng-model='organization.email' disabled)
+				section
+					a.btn-flat(ng-init='advanced=false' ng-click='advanced = !advanced') advanced
+						i.material-icons.right expand_more
+				section(ng-show='advanced')
+					br
+					.btn.red Delete
+					p This action cannot be undone
+
+		.col.s12.l6
+			.card-panel
+				.row
+					.col.s12
+						h5 Users
+						ul.collection
+							li.pointer.collection-item.avatar(ng-repeat='user in users')
+								img.circle(src='http://danpoindexter.com/img/danpoindexter.png')
+								span.title {{user.name}}
+								p {{user.email}}
+								a.secondary-content(ng-click='removeUser(user.$id)')
+									i.material-icons.grey-text close
+								
+					.col.s8
+						input(type='text' placeholder='Email' ng-model='newUserEmail')
+					.col.s4
+						.btn.full.orange(ng-click='addUser()') Add

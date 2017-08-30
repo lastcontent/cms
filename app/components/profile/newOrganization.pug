@@ -1,0 +1,11 @@
+.content
+	.row
+		.col.s12.l6.offset-l3
+			.card-panel
+				label Organization Name
+				input(type='text' ng-model='$ctrl.name')
+				
+				label Organization Email
+				input(type='text' ng-model='$ctrl.email')
+				
+				a(ng-click='$ctrl.newOrganization()').btn.orange Create

@@ -1,0 +1,38 @@
+.content
+	.row
+		.col.s12.l6
+			.card-panel
+				section.center
+					div(style='max-width: 250px; margin: 0 auto')
+						img.responsive-img(src='http://danpoindexter.com/img/danpoindexter.png')
+				//br
+				section
+					br
+					.row
+						a.col.s12.l4.btn.grey Upload Image
+						a.col.s12.l4.offset-l4.btn.grey Remove Image
+				br
+				section
+					label Name
+					input(type='text' ng-model='user.name')
+				section
+					label Email
+					input(type='text' ng-model='user.email' disabled)
+				section
+					a.btn-flat(ng-init='advanced=false' ng-click='advanced = !advanced') advanced
+						i.material-icons.right expand_more
+				section(ng-show='advanced')
+					br
+					.btn.red Delete
+					p This action cannot be undone
+		.col.s12.l6
+			.card-panel
+				h5 Organizations
+				ul.collection
+					li.pointer.collection-item.avatar(ng-repeat='organization in organizations' ui-sref='editor.organization({organizationId: organization.$id})') 
+						img.circle(src='https://wellopp.com/img/logo.svg')
+						span.title {{organization.name}}
+						p {{organization.email}}
+				.center
+					p(ng-show='!organizations') You are not a member of any organizations.
+					a(ui-sref='editor.profile.newOrganization').btn.orange Create New

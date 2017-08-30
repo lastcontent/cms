@@ -1,0 +1,13 @@
+.radioset.nobar: ul
+	li(ng-repeat='option in item.props.options')
+		input(type='radio')
+		label
+		i.pointer.blue-text.close.material-icons(ng-click='item.props.options.splice($index, 1)') close
+
+	li(ng-if='!item.props.options || item.props.options.length < 5')
+		input(type='radio' checked disabled)
+		label.add(ng-click='item.props.options ? item.props.options.push({text: "new option", weight: 0}) : item.props.options = [{text: "new option", weight: 0}]')
+
+.text-labels
+	.text-label(content-editable ng-model='option.text' ng-repeat='option in item.props.options')
+	.text-label(ng-if='item.props.options.length < 5')
